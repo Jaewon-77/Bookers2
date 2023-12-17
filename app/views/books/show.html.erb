@@ -1,3 +1,56 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'users/userinfo', user: @user %>
+      <%= render 'users/newbook', book: @book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <thead>
+          
+        </thead>
+        <tbody>
+       <tr>
+         <td><%= image_tag @user.get_profile_image(100,100) %>
+         <%= link_to @user.name, user_path(current_user.id), class: 'nav-link text-blue'  %>
+         </td>
+         <td><%= @book.title %></td>
+         <td><%= @book.body %></td>
+         <td><%= link_to "edit", edit_book_path(@book.id) %> </td>
+         <td><%= link_to "detroy", book_path(@book) %> </td>
+       </tr>
+       </tbody>
+       
+     </table>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="container mt-5">
+     <div class="row">
+        <div class="mx-auto">
+          <p>CopyRight Infratop.inc</p>
+        </div>
+     </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div>
   <p>Title：<%= @book.title %></p>
