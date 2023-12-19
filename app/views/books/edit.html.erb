@@ -1,9 +1,8 @@
 <div class= "container">
   <div class= "row">
     <div class="col-sm-12 col-md-8 col-lg-5 pc-5 px-sm-0 mx-auto">
-      
+
 <h2>Editing Book</h2>
-<form>
   <%= form_with model: @book do |f| %>
   <div class= "form-group">
   <label for="inputName">Title</label><br>
@@ -14,11 +13,11 @@
   <%= f.text_area :body %>
   </div>
   <div class= "form-group">
-  <%= f.submit "Update User" %>
-  <%= link_to book_path(current_user.id) %>
+  <%= f.submit "Update Book" %>
   </div>
 <% end %>
-</form>
+<%= link_to "Show", book_path(@book.id), class: 'text-blue' %>|
+<%= link_to "Back", books_path, class: 'text-blue' %>
 </div>
 </div>
 </div>
