@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :correct_user, only: [:edit, :update]
+  
  def new
     @book = Book.new
  end
@@ -42,9 +44,12 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @book.update(book_params)
-    flash[:notice] = "successfully"
-    redirect_to book_path(@book.id)
+    if @book.update(book_params)
+      flash[:notice] = "successfully"
+      redirect_to book_path(@book.id)
+    else 
+      render :edit
+    end
   end
 
   # 投稿データのストロングパラメータ
@@ -53,4 +58,13 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
+  
+  def correct_user
+    book = Book.find(params[:id])
+    user = book.user
+    unless user.id == current_user.id
+      redirect_to books_path
+    end
+  end
+  
 end
