@@ -8,7 +8,7 @@
       <h2>Book detail</h2>
       <table class="table">
         <thead>
-
+          
         </thead>
         <tbody>
        <tr>
@@ -23,10 +23,40 @@
          <td><%= link_to "Edit", edit_book_path(@book.id), class: 'btn btn-sm btn-success' %></td>
          <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" , class: "btn btn-sm btn-danger destroy" %></td>
          <% end %>
+         <td><% if @book.favorited_by?(current_user) %>
+           <p>
+             <%= link_to book_favorite_path(@book), method: :delete do %>
+             ♥<%= @book.favorites.count %> 
+             <% end %>
+             </p>
+             <% else %>
+            <p>
+            <%= link_to book_favorite_path(@book), method: :post do %>
+             ♡<%= @book.favorites.count %> 
+             <% end %>
+             </p>
+              <% end %></td>
+              <td>
+                <div>
+                   <p>コメント件数：<%= @book.book_comments.count %></p>
+                </div>
+              </td>
        </tr>
        </tbody>
 
      </table>
+     <div><% @book.book_comments.each do |book_comment| %>
+        <p><%= image_tag book_comment.user.get_profile_image(100,100) %></p>
+        <%= book_comment.user.name %>
+        <%= book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" , class: "btn btn-sm btn-danger destroy" %><br>
+        <% end %>
+      </div>
+     <div>
+  <%= form_with model: [@book, @book_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
     </div>
   </div>
 </div>
