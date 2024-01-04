@@ -8,7 +8,7 @@
       <h2>Book detail</h2>
       <table class="table">
         <thead>
-          
+
         </thead>
         <tbody>
        <tr>
@@ -27,26 +27,27 @@
 　　　<%= render "favorites/favorite", book: @book %>
 　　</td>
               <td>
-                <div>
-                   <p>コメント件数：<%= @book.book_comments.count %></p>
+                <div class = "comments-count">
+                   <%= render 'book_comments/counter', book: @book %>
                 </div>
               </td>
        </tr>
        </tbody>
 
      </table>
-     <div><% @book.book_comments.each do |book_comment| %>
-        <p><%= image_tag book_comment.user.get_profile_image(100,100) %></p>
-        <%= book_comment.user.name %>
-        <%= book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" , class: "btn btn-sm btn-danger destroy" %><br>
-        <% end %>
-      </div>
-     <div>
-  <%= form_with model: [@book, @book_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
+     <!--<div>-->
+     <!--<%# @book.book_comments.each do |book_comment| %>-->
+     <!--   <p><%#= image_tag book_comment.user.get_profile_image(100,100) %></p>-->
+     <!--   <%#= book_comment.user.name %>-->
+     <!--   <%#= book_comment.created_at.strftime('%Y/%m/%d') %><%#= book_comment.comment %><%#= link_to "Destroy", book_path(@book.id), method: :delete,remotue: true, "data-confirm" => "本当に削除しますか？" , class: "btn btn-sm btn-danger destroy" %><br>-->
+     <!--   <%# end %>-->
+     <!-- </div>-->
+     <!--<div>-->
+     <div class = "book_comments">
+       <%= render 'book_comments/comment', book: @book %>
+     </div class = "comment-form">
+       <%= render 'book_comments/comment_form', book: @book, book_comment: @book_comment %>
+     </div>
     </div>
   </div>
 </div>

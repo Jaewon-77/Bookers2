@@ -8,7 +8,7 @@ root to: 'homes#top'
 get 'home/about' => 'homes#about'
 
 resources :books, only: [:create, :index, :show, :destroy, :edit, :update] do
-  resources :book_comments, only: [:create]
+  resources :book_comments, only: [:create, :destroy]
   resource :favorite, only: [:create, :destroy]
 end
 resources :users, only: [:show, :edit, :update, :index ]

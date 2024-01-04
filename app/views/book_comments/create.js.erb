@@ -1,0 +1,5 @@
+<!--$("#book_<%#= @book.id %> .comments-count").html("コメント数: <%#= @book.book_comments.count %>");-->
+$(".book_comments").html("<%= j(render 'book_comments/comment', book: @book) %>");
+$(".comments-count").html("<%= j(render 'book_comments/counter', book: @book) %>");
+$(".comment-form").html("<%= j(render 'book_comments/comment_form', book: @book, book_comment: @book_comment)  %>");
+$("#book_comment_comment").val("");
