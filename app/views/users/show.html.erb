@@ -12,6 +12,13 @@
              <% end %>
            <% end %>
            </div>
+       <div>
+         <br>
+         <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
+         <%= link_to 'chatを始める', chat_path(@user.id), class: "btn btn-sm btn-success" %>
+         <% end %>
+         <!--DM機能-->
+       </div>
       <%= render 'users/newbook', book: @book %>
     </div>
     <div class="col-md-8 offset-md-1">

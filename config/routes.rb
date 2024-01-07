@@ -12,6 +12,8 @@ resources :books, only: [:create, :index, :show, :destroy, :edit, :update] do
   resource :favorite, only: [:create, :destroy]
 end
 resources :users, only: [:show, :edit, :update, :index ]
+#DM機能で
+resources :chats, only: [:show, :create]
 
 # get 'home/about' , as: 'about'
 resources :users do
