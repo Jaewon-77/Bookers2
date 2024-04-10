@@ -5,7 +5,6 @@
   <div class="messages">
     <%= render "chats/message", chats: @chats %>
   </div>
-
   <div class="chat-form">
     <%= form_with model: @chat, data: {remote: true} do |f| %>
       <!--<div class="errors">DMでエラーが出る部分-->

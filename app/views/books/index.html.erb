@@ -6,7 +6,6 @@
     <% end %>
   </ul>
 <% end %>
-
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
@@ -22,23 +21,29 @@
           <th>Opinion</th>
         </thead>
         <tbody>
-     <% @books.each do |book| %>
-       <tr>
-         <td><%= link_to user_path(book.user) do %>
-           <%= image_tag book.user.get_profile_image(100,100) %> <% end %> </td>
-         <td><%= link_to book_path(book.id) do %> <%= book.title  %> <% end %></td>
-         <td><%= book.body %></td>
-         <td id="favorite_buttons_<%= book.id %>"><%= render "favorites/favorite", book: book %>
-　　     </td>
-         <td>
-           <p>コメント件数：<%= book.book_comments.count %></p>
-         </td>
-         <td><td>閲覧数: <%= book.view_counts.count %></td></td>
-
-       </tr>
-     <% end %>
+          <% @books.each do |book| %>
+            <tr>
+              <td>
+                <%= link_to user_path(book.user) do %>
+                  <%= image_tag book.user.get_profile_image(100,100) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to book_path(book.id) do %>
+                  <%= book.title  %>
+                <% end %>
+              </td>
+              <td><%= book.body %></td>
+              <td id="favorite_buttons_<%= book.id %>">
+                <%= render "favorites/favorite", book: book %>
+              </td>
+              <td>
+                <p>コメント件数：<%= book.book_comments.count %></p>
+              </td>
+              <td><td>閲覧数: <%= book.view_counts.count %></td></td>
+            </tr>
+          <% end %>
        </tbody>
-
      </table>
     </div>
   </div>
